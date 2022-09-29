@@ -1,4 +1,5 @@
 \documentclass{article}
+\usepackage{amsfonts}
 \title{Proof of Primes: Testing Primality Using Loops}
 \author{Chun Kang Lu, Keethan Jeyabalan, Kevin Li}
 \date{2022/09/28}
@@ -6,8 +7,19 @@
 	\maketitle
 	\flushleft
 	\section*{Program}
-	\subsection* {Precondition:}
-	\subsection* {Postcondition:}
-	\subsection* {is_prime(n):}
+	Precondition: \(n\in \mathbb{N} \) \\ 
+	Postcondition: TRUE iff n is prime, FALSE otherwise\\
+	is\_prime(n): \\
+	\begin{verbatim}
+1        i=2; prime = TRUE
+2        while(prime and i<n):
+3            if(n%i == 0):
+4                prime = FALSE
+5            else:
+6                i = i+1
+7        return prime
+	\end{verbatim}
+	
 	
 \end{document}
+
