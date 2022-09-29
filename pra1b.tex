@@ -1,8 +1,10 @@
 \documentclass{article}
-\usepackage{amsfonts}
+\usepackage{amsfonts, amssymb, enumitem, amsmath}
+
 \title{Proof of Primes: Testing Primality Using Loops}
 \author{Chun Kang Lu, Keethan Jeyabalan, Kevin Li}
 \date{2022/09/28}
+
 \begin{document}
 	\maketitle
 	\flushleft
@@ -19,7 +21,16 @@
 6                i = i+1
 7        return prime
 	\end{verbatim}
-	
+	\section{Loop Invariant}
+	\begin{enumerate}[label=(\alph*)]
+		\item \(2 \leq i \leq n\)
+		\item prime = TRUE \(\Longrightarrow(\forall k \in \mathbb{N}, 2 \leq k < n, 0 \not\equiv n \pmod k)\)
+		\item prime = FALSE \(\Longrightarrow (i < n) \land (i\mid n)\)
+	\end{enumerate}
+	\section{Proof of Loop Invariant}
+	Basis: On entering the loop,\\
+	\begin{align*}
+	i = 2, prime = true &&\text{[line 1]}\\
+	\end{align*}
 	
 \end{document}
-
