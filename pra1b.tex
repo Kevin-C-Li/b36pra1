@@ -28,9 +28,31 @@
 		\item prime = FALSE \(\Longrightarrow (i < n) \land (i\mid n)\)
 	\end{enumerate}
 	\section{Proof of Loop Invariant}
-	Basis: On entering the loop,\\
+	\textbf{Basis:} On entering the loop,\\
 	\begin{align*}
 	i = 2, prime = true &&\text{[line 1]}\\
 	\end{align*}
+	We have that $2 \leq i \leq n$, so (a) holds\\
+	prime = TRUE, and no k is in range, so (b) holds\\
+	Since (b) holds, (c) is not applicable\\
+	$\therefore$ the loop invariant holds.\\
+	\textbf{Induction Step:} Consider some arbitrary iteration of the loop, and suppose LI holds before the iteration.\\
+	We have prime = TRUE and $i<n$. (i)
+	\begin{itemize}
+		\item For (a), consider [line 3].\\
+			\begin{align*}
+				n \equiv 0 \pmod{i} &\implies i' = i \leq n &&\text{[by (a)]} \\
+				n \not\equiv 0 \pmod{i} &\implies i' = i+1 &&\text{[line 6]}
+			\end{align*}
+			By (i), $i<n \implies i+1$, thus $i' = i+1 \leq n$ \\As wanted for (a)
+		\item For (b), suppose prime$'$ = TRUE. Then, $n \not\equiv 0 \pmod{i}$ by line 3 and $i' = i+1$ by line 6.\\
+			Furthermore, we know that $k \in \mathbb{N}, 2 \leq k < i, n \not\equiv 0 \pmod{k}$.\\
+			As a result, $\forall k \in \mathbb{N}, 2 \leq k < i' \implies n \not\equiv 0 \pmod{k}$\\
+			As wanted for (b)
+		\item For (c), suppose prime$'$ = FALSE. We have $n \equiv 0 \pmod{i}$ by line 3 and $i' = i$ since line 6 is not executed.\\
+			$0 \equiv n \pmod{i'}$; by (i), $i' = i < n$\\
+			As wanted for (c)
+	\end{itemize}
+	\section{Proof of Partial Correctness}
 	
 \end{document}
