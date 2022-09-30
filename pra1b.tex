@@ -1,6 +1,5 @@
 \documentclass{article}
 \usepackage{amsfonts, amssymb, enumitem, amsmath}
-
 \title{Proof of Primes: Testing Primality Using Loops}
 \author{Chun Kang Lu, Keethan Jeyabalan, Kevin Li}
 \date{2022/09/28}
@@ -21,13 +20,13 @@
 6                i = i+1
 7        return prime
 	\end{verbatim}
-	\section{Loop Invariant}
+	\section*{Loop Invariant}
 	\begin{enumerate}[label=(\alph*)]
 		\item \(2 \leq i \leq n\)
-		\item prime = TRUE \(\Longrightarrow(\forall k \in \mathbb{N}, 2 \leq k < n, 0 \not\equiv n \pmod k)\)
+		\item prime = TRUE \(\Longrightarrow(\forall k \in \mathbb{N}, 2 \leq k < n, n \not\equiv 0 \pmod k)\)
 		\item prime = FALSE \(\Longrightarrow (i < n) \land (i\mid n)\)
 	\end{enumerate}
-	\section{Proof of Loop Invariant}
+	\section*{Proof of Loop Invariant}
 	\textbf{Basis:} On entering the loop,\\
 	\begin{align*}
 	i = 2, prime = true &&\text{[line 1]}\\
@@ -53,6 +52,22 @@
 			$0 \equiv n \pmod{i'}$; by (i), $i' = i < n$\\
 			As wanted for (c)
 	\end{itemize}
-	\section{Proof of Partial Correctness}
-	
+	\section*{Partial Correctness}
+	Suppose the loop terminates  and consider the values of i, n, and prime on exit.\\
+	\begin{enumerate}[leftmargin=.8cm, labelsep=0cm, align=left]
+		\item[Case 1: ] prime = TRUE. By (a), $i \leq n$. By exit condition, $i > n$. \\ $\therefore i=n$.\\By (b), $\forall k \in \mathbb{N}, 2 \leq k < n \implies n \not\equiv 0 \pmod{k}$, so n is prime as wanted.
+		\item[Case 2: ] prime = FALSE. By (a) and (c), $(2 \leq i < n) \land (n \equiv 0 \pmod{i})$, so i is a factor of n, meaning that n is not prime as wanted.
+	\end{enumerate}
+	\section*{Termination}
+	If prime = FALSE or prime$'$ = FALSE, then the loop terminates.\\
+	Suppose prime = TRUE and prime$'$ = TRUE. Associate each iteration with the expression\\ \(e=n-i\) \\By (a), $i \leq n$, so $e = n-i \geq 0 \implies e \in \mathbb{N}$. \\
+	Then,
+	\begin{align*}
+		e' &= n-i' &&\text{[def. of e$'$]}\\
+		    &= n-(i+1) &&\text{[line 6]}\\
+		    &= n-i-1\\
+		    &= e-1 &&\text{[def. of e]}\\
+		    &<e\\ 
+	\end{align*}
+	$\therefore$ The values of $e$ form a strictly decreasing sequence of natural numbers. By the well-ordering principle, the loop will eventually terminate. 
 \end{document}
