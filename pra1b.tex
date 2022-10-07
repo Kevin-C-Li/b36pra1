@@ -8,7 +8,7 @@
 	\maketitle
 	\flushleft
 	\section*{Program}
-	Precondition: \(n\in \mathbb{N} \) \\ 
+	Precondition: \(n\in \mathbb{N}, n \geq 2 \) \\ 
 	Postcondition: TRUE iff n is prime, FALSE otherwise\\
 	is\_prime(n): \\
 	\begin{verbatim}
@@ -27,15 +27,16 @@
 		\item prime = FALSE \(\Longrightarrow (i < n) \land (i\mid n)\)
 	\end{enumerate}
 	\section*{Proof of Loop Invariant}
+	\textbf{$P(i)$: } $\forall n \in \mathbb{N}, n \geq 2, i \in \mathbb{N}$ and conditions (a), (b), and (c) hold.  \\
 	\textbf{Basis:} On entering the loop,\\
 	\begin{align*}
-	i = 2, prime = true &&\text{[line 1]}\\
+	i = 2 \land prime = true &&\text{[line 1]}\\
 	\end{align*}
 	We have that $2 \leq i \leq n$, so (a) holds\\
 	prime = TRUE, and no k is in range, so (b) holds\\
-	Since (b) holds, (c) is not applicable\\
+	Since (b) holds, (c) is not applicable, 
 	$\therefore$ the loop invariant holds.\\
-	\textbf{Induction Step:} Consider some arbitrary iteration of the loop, and suppose LI holds before the iteration.\\
+	\textbf{Induction Step:} Consider some arbitrary iteration of the loop, and suppose $P(i)$ holds before the iteration.\\
 	We have prime = TRUE and $i<n$. (i)
 	\begin{itemize}
 		\item For (a), consider [line 3].\\
@@ -52,6 +53,7 @@
 			$0 \equiv n \pmod{i'}$; by (i), $i' = i < n$\\
 			As wanted for (c)
 	\end{itemize}
+	$\therefore$ $P(i) \implies P(i+1)$ and the loop is correct.
 	\section*{Partial Correctness}
 	Suppose the loop terminates  and consider the values of i, n, and prime on exit.\\
 	\begin{enumerate}[leftmargin=.8cm, labelsep=0cm, align=left]
